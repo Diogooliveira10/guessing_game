@@ -5,6 +5,7 @@ import { Button } from "./components/Button"
 import { Tip } from "./components/Tip"
 import { Letter } from "./components/Letter"
 import { Header } from "./components/Header"
+import { LettersUsed } from "./components/LettersUsed"
 
 export default function App() {
 
@@ -33,6 +34,7 @@ export default function App() {
                     <Button title="Confirmar" />
                 </div>
 
+                <LettersUsed />
             </main>
         </div>
     )
