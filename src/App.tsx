@@ -1,18 +1,21 @@
 import styles from "./app.module.css"
 import { useEffect, useState } from "react"
 
-import { WORDS } from "./utils/words"
+import { Challenge, WORDS } from "./utils/words"
 
 import { Input } from "./components/Input"
 import { Button } from "./components/Button"
 import { Tip } from "./components/Tip"
 import { Letter } from "./components/Letter"
 import { Header } from "./components/Header"
-import { LettersUsed } from "./components/LettersUsed"
+import { LettersUsed, LettersUsedProps } from "./components/LettersUsed"
 
 export default function App() {
     const [ letter, setLetter ] = useState("")
     const [ attempts, setAttempts ] = useState(0)
+    const [ lettersUsed, setLettersUsed ] = useState<LettersUsedProps[]>([{
+        value: "X", correct: true
+    }])
     const [ challenge, setChallenge ] = useState<Challenge | null>(null)
 
     function handleRestartGame() {
@@ -57,7 +60,7 @@ export default function App() {
                     <Button title="Confirmar" />
                 </div>
 
-                <LettersUsed />
+                <LettersUsed data={lettersUsed}/>
             </main>
         </div>
     )
