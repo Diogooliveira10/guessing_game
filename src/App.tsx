@@ -16,6 +16,8 @@ export default function App() {
     const [ lettersUsed, setLettersUsed ] = useState<LettersUsedProps[]>([])
     const [ challenge, setChallenge ] = useState<Challenge | null>(null)
 
+    const ATTEMPTS_MARGIN = 5
+
     function handleRestartGame() {
         alert("Reiniciar o jogo!")
     }
@@ -72,7 +74,11 @@ export default function App() {
     return (
         <div className={styles.container}>
             <main>
-                <Header current={score} max={10} onRestart={handleRestartGame} />
+                <Header 
+                    current={score} 
+                    max={challenge.word.length + ATTEMPTS_MARGIN} 
+                    onRestart={handleRestartGame} 
+                />
 
                 <Tip tip={challenge.tip} />
 
@@ -86,7 +92,8 @@ export default function App() {
                             return <Letter 
                                 key={index} 
                                 value={letterUsed?.value} 
-                                color={letterUsed?.correct ? "correct" : "default"} />
+                                color={letterUsed?.correct ? "correct" : "default"} 
+                            />
                         })
                     }
                 </div>
@@ -99,9 +106,12 @@ export default function App() {
                         placeholder="?"
                         value={letter}
                         onChange={(e) => setLetter(e.target.value)}
-                        />
+                    />
 
-                    <Button title="Confirmar" onClick={handleConfirm}/>
+                    <Button 
+                        title="Confirmar" 
+                        onClick={handleConfirm}
+                        />
                 </div>
 
                 <LettersUsed data={lettersUsed}/>
